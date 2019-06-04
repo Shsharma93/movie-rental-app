@@ -1,25 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Row from './Row';
 import Data from './Data';
 import DeleteButton from './DeleteButton';
 import { Consumer } from '../context';
 
-class SubRow extends Component {
-  render() {
-    return (
-      <Consumer>
-        {context => <tbody>{this.movieData(context.state)}</tbody>}
-      </Consumer>
-    );
-  }
-
-  movieData = state => {
-    return state.movies.map(el => (
-      <Row key={el._id} item={this.movieRow(el, state.deleteMovie)} />
-    ));
-  };
-
-  movieRow = (el, deleteMovie) => {
+const SubRow = () => {
+  
+  const movieRow = (el, deleteMovie) => {
     return [
       <Data type={el.title} />,
       <Data type={el.genre.name} />,
@@ -28,6 +15,18 @@ class SubRow extends Component {
       <Data type={<DeleteButton del={() => deleteMovie(el._id)} />} />
     ];
   };
-}
+
+  const movieData = state => {
+    return state.movies.map(el => (
+      <Row key={el._id} item={movieRow(el, state.deleteMovie)} />
+    ));
+  };
+
+  return (
+    <Consumer>
+      {context => <tbody>{movieData(context.state)}</tbody>}
+    </Consumer>
+  );
+};
 
 export default SubRow;

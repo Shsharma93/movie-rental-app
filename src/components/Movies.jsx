@@ -7,15 +7,24 @@ import { Consumer } from '../context';
 const Movies = () => {
   return (
     <Consumer>
-      {context => (
-        <div>
-          <Title count={context.state.movies.length} />
-          <table className='table'>
-            <TopRow />
-            <SubRow />
-          </table>
-        </div>
-      )}
+      {context => {
+        const { movies } = context.state;
+        let table = '';
+        if (movies.length > 0) {
+          table = (
+            <table className='table'>
+              <TopRow />
+              <SubRow />
+            </table>
+          );
+        }
+        return (
+          <div>
+            <Title count={movies.length} />
+            {table}
+          </div>
+        );
+      }}
     </Consumer>
   );
 };
