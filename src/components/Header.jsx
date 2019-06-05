@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Heading = props => <th scope='col'>{props.title}</th>;
+const Heading = ({ title }) => <th scope='col'>{title}</th>;
 
 export default Heading;

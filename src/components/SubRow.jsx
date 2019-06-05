@@ -5,7 +5,6 @@ import DeleteButton from './DeleteButton';
 import { Consumer } from '../context';
 
 const SubRow = () => {
-  
   const movieRow = (el, deleteMovie) => {
     return [
       <Data type={el.title} />,
@@ -23,9 +22,7 @@ const SubRow = () => {
   };
 
   return (
-    <Consumer>
-      {context => <tbody>{movieData(context.state)}</tbody>}
-    </Consumer>
+    <Consumer>{context => <tbody>{movieData(context.state)}</tbody>}</Consumer>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-const Data = props => {
+const Data = ({type}) => {
   return (
     <Fragment>
-      <td>{props.type}</td>
+      <td>{type}</td>
     </Fragment>
   );
 };
