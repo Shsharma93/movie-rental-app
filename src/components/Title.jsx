@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Title = ({ count }) => (
   <div className='mt-5 mb-3 ml-5'>
@@ -7,3 +8,7 @@ const Title = ({ count }) => (
 );
 
 export default Title;
+
+Title.propTypes = {
+  count: PropTypes.number
+};

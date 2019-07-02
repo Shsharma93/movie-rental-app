@@ -16,7 +16,6 @@ const pagination = () => {
         const pageCount = Math.ceil(itemCount / pageSize);
         if (pageCount === 1) return null;
         const pages = _.range(1, pageCount + 1);
-        console.log(currentPage);
         return (
           <nav aria-label='Page navigation example'>
             <ul className='pagination justify-content-center'>

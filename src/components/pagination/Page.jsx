@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const page = ({ text, onPageChange, classes }) => {
   return (
@@ -11,3 +12,9 @@ const page = ({ text, onPageChange, classes }) => {
 };
 
 export default page;
+
+page.propTypes = {
+  text: PropTypes.number,
+  onPageChange: PropTypes.func,
+  classes: PropTypes.string
+};
