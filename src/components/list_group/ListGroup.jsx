@@ -6,13 +6,20 @@ const ListGroup = () => {
   return (
     <Consumer>
       {context => {
-        const { genre } = context.state;
-        const filterOptions = ['All Genre'];
-        genre.forEach(genre => filterOptions.push(genre.name));
+        const { genre, activeGenre, handleFilterMovie } = context.state;
         return (
           <ul className='list-group'>
-            {filterOptions.map(genre => (
-              <ListItem classes='list-group-item' key={genre} name={genre} />
+            {genre.map(genre => (
+              <ListItem
+                classes={
+                  genre === activeGenre
+                    ? 'list-group-item active'
+                    : 'list-group-item'
+                }
+                key={genre}
+                name={genre}
+                click={() => handleFilterMovie(genre)}
+              />
             ))}
           </ul>
         );

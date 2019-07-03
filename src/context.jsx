@@ -6,23 +6,36 @@ const Context = React.createContext();
 
 export class Provider extends Component {
   state = {
-    movies: getMovies(),
-    itemCount: 9,
+    movies: [],
+    filteredMovies: [],
+    itemCount: 0,
     pageSize: 4,
     currentPage: 1,
-    genre: getGenres(),
+    genre: [],
+    activeGenre: '',
+    loading: true,
     deleteMovie: id => {
-      const movies = this.state.movies.filter(m => m._id !== id);
-      const itemCount = this.state.movies.length - 1;
-      const totalPages = Math.ceil(this.state.itemCount / this.state.pageSize);
-      let currentPage = this.state.currentPage;
-      if (
-        this.state.itemCount % this.state.pageSize === 1 &&
-        this.state.currentPage === totalPages
-      ) {
-        currentPage = this.state.currentPage - 1;
+      const {
+        filteredMovies,
+        movies,
+        itemCount,
+        pageSize,
+        currentPage
+      } = this.state;
+      const moviesList = movies.filter(m => m._id !== id);
+      const filteredMoviesList = filteredMovies.filter(m => m._id !== id);
+      const movieCount = filteredMoviesList.length;
+      const totalPages = Math.ceil(itemCount / pageSize);
+      let currentPageNumber = currentPage;
+      if (itemCount % pageSize === 1 && currentPage === totalPages) {
+        currentPageNumber = currentPage - 1;
       }
-      this.setState({ movies, itemCount, currentPage });
+      this.setState({
+        movies: moviesList,
+        itemCount: movieCount,
+        currentPage: currentPageNumber,
+        filteredMovies: filteredMoviesList
+      });
     },
     likeMovie: id => {
       const movies = this.state.movies;
@@ -32,7 +45,40 @@ export class Provider extends Component {
     },
     handlePageChange: page => {
       this.setState({ currentPage: page });
+    },
+    handleFilterMovie: name => {
+      let filteredMovies = [];
+      if (name === this.state.genre[0]) {
+        filteredMovies = this.state.movies;
+      } else {
+        filteredMovies = this.state.movies.filter(
+          movie => movie.genre.name === name
+        );
+      }
+
+      this.setState({
+        activeGenre: name,
+        filteredMovies,
+        itemCount: filteredMovies.length,
+        currentPage: 1
+      });
     }
+  };
+
+  componentDidMount = () => {
+    const movies = getMovies();
+    const genre = ['All Genre'];
+    const filterOptions = getGenres();
+
+    filterOptions.forEach(g => genre.push(g.name));
+    this.setState({
+      movies,
+      genre,
+      loading: false,
+      activeGenre: genre[0],
+      filteredMovies: movies,
+      itemCount: movies.length
+    });
   };
 
   render() {

@@ -37,7 +37,11 @@ const SubRow = () => {
   };
 
   const movieData = state => {
-    const movies = paginate(state.movies, state.currentPage, state.pageSize);
+    const movies = paginate(
+      state.filteredMovies,
+      state.currentPage,
+      state.pageSize
+    );
     return movies.map(el => (
       <Row
         key={el._id}
