@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 
 const page = ({ text, onPageChange, classes }) => {
   return (
-    <li className={classes}>
-      <a className='page-link' onClick={onPageChange}>
+    <li className={classes} style={{'cursor':'pointer'}} onClick={onPageChange}>
+      <Link className='page-link' to='' >
         {text}
-      </a>
+      </Link>
     </li>
   );
 };

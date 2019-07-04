@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import TopRow from './TopRow';
-import SubRow from './SubRow';
+import TopRow from './Table/TopRow';
+import SubRow from './Table/SubRow';
 import Title from './Title';
 import { Consumer } from '../context';
 import Loader from './loader/Loader';
@@ -23,11 +23,15 @@ const Movies = () => {
         }
 
         let movieTable = (
-          <div>
-            <ListGroup />
-            <Title count={filteredMovies.length} />
-            {table}
-            <Pagination />
+          <div className='row mt-5'>
+            <div className='col-2 mt-5 mr-5'>
+              <ListGroup />
+            </div>
+            <div className='col'>
+              <Title count={filteredMovies.length} />
+              {table}
+              <Pagination />
+            </div>
           </div>
         );
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getMovies } from './db/fakeMovieService';
 import { getGenres } from './db/fakeGenreService';
+import _ from 'lodash';
 
 const Context = React.createContext();
 
@@ -14,6 +15,7 @@ export class Provider extends Component {
     genre: [],
     activeGenre: '',
     loading: true,
+    sortOrder: '',
     deleteMovie: id => {
       const {
         filteredMovies,
@@ -60,8 +62,18 @@ export class Provider extends Component {
         activeGenre: name,
         filteredMovies,
         itemCount: filteredMovies.length,
-        currentPage: 1
+        currentPage: 1,
+        sortOrder: ''
       });
+    },
+    handleSort: type => {
+      const sortOrder = this.state.sortOrder === 'asc' ? 'desc' : 'asc';
+      const sortedMovies = _.orderBy(
+        this.state.filteredMovies,
+        type,
+        sortOrder
+      );
+      this.setState({ filteredMovies: sortedMovies, sortOrder });
     }
   };
 
@@ -69,7 +81,6 @@ export class Provider extends Component {
     const movies = getMovies();
     const genre = ['All Genre'];
     const filterOptions = getGenres();
-
     filterOptions.forEach(g => genre.push(g.name));
     this.setState({
       movies,

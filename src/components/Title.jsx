@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Title = ({ count }) => (
-  <div className='mt-5 mb-3 ml-5'>
+  <div className='mb-3 ml-5'>
     <h5>Showing {count} movies from database</h5>
   </div>
 );

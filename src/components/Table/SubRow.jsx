@@ -1,19 +1,20 @@
 import React from 'react';
 import Row from './Row';
 import Data from './Data';
-import Button from './Button';
-import { Consumer } from '../context';
+import Button from '../Button';
+import { Consumer } from '../../context';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import paginate from '../Utils/paginate';
+import paginate from '../../Utils/paginate';
+import uuid from 'uuid/v4';
 
 const SubRow = () => {
   const movieRow = (el, deleteMovie, likeMovie) => {
-    const color = el.liked ? 'green' : 'grey';
+    const color = el.liked ? '#dc3545' : 'grey';
     return [
-      <Data type={el.title} />,
-      <Data type={el.genre.name} />,
-      <Data type={el.numberInStock} />,
-      <Data type={el.dailyRentalRate} />,
+      <Data type={el.title} key={uuid()} />,
+      <Data type={el.genre.name} key={uuid()} />,
+      <Data type={el.numberInStock} key={uuid()} />,
+      <Data type={el.dailyRentalRate} key={uuid()} />,
       <Data
         type={
           <Button
@@ -23,6 +24,7 @@ const SubRow = () => {
             click={() => likeMovie(el._id)}
           />
         }
+        key={uuid()}
       />,
       <Data
         type={
@@ -32,6 +34,7 @@ const SubRow = () => {
             classes='btn btn-danger btn-sm'
           />
         }
+        key={uuid()}
       />
     ];
   };

@@ -3,7 +3,15 @@ import Header from './Header';
 import Row from './Row';
 
 const TopRow = () => {
-  const rowHeader = ['Title', 'Genre', 'Stock', 'Rate', '', ''];
+  const rowHeader = [
+    { title: 'Title' },
+    { 'genre.name': 'Genre' },
+    { numberInStock: 'Stock' },
+    { dailyRentalRate: 'Rate' },
+    { '': '' },
+    { '': '' }
+  ];
+
   return (
     <thead>
       <Row
