@@ -5,7 +5,7 @@ import Title from './Title';
 import { Consumer } from '../context';
 import Loader from './loader/Loader';
 import Pagination from './pagination/Pagination';
-import ListGroup from './list_group/ListGroup';
+import ListGroup from './listGroup/ListGroup';
 
 const Movies = () => {
   return (
@@ -23,7 +23,7 @@ const Movies = () => {
         }
 
         let movieTable = (
-          <div className='row mt-5'>
+          <div className='row'>
             <div className='col-2 mt-5 mr-5'>
               <ListGroup />
             </div>

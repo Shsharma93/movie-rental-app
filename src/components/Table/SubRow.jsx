@@ -11,7 +11,7 @@ const SubRow = () => {
   const movieRow = (el, deleteMovie, likeMovie) => {
     const color = el.liked ? '#dc3545' : 'grey';
     return [
-      <Data type={el.title} key={uuid()} />,
+      <Data type={el} key={uuid()} movieTitle />,
       <Data type={el.genre.name} key={uuid()} />,
       <Data type={el.numberInStock} key={uuid()} />,
       <Data type={el.dailyRentalRate} key={uuid()} />,

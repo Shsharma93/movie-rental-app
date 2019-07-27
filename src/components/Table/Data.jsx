@@ -1,10 +1,16 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Data = ({ type }) => {
+const Data = ({ type, movieTitle }) => {
+  let cellElement = type;
+  if (movieTitle) {
+    cellElement = <Link to={`/movies/${type._id}`}>{type.title}</Link>;
+  }
+
   return (
     <Fragment>
-      <td>{type}</td>
+      <td>{cellElement}</td>
     </Fragment>
   );
 };

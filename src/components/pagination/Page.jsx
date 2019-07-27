@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 const page = ({ text, onPageChange, classes }) => {
   return (
-    <li className={classes} style={{'cursor':'pointer'}} onClick={onPageChange}>
-      <Link className='page-link' to='' >
+    <li
+      className={classes}
+      style={{ cursor: 'pointer' }}
+      onClick={onPageChange}
+    >
+      <NavLink className='page-link' to='/movies'>
         {text}
-      </Link>
+      </NavLink>
     </li>
   );
 };
